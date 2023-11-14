@@ -16,7 +16,7 @@ const Login = () => {
     //validate the form data
 
     const message = isSignInForm
-      ? checkValidData(email.current.value, password.current.value, null)
+      ? checkValidData(email.current.value, password.current.value)
       : checkValidData(
           email.current.value,
           password.current.value,
