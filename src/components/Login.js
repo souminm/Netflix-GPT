@@ -75,7 +75,7 @@ const Login = () => {
         <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
           {isSignInForm
             ? "New to Netlfix? Sign Up Now."
-            : "Already registered ?, Sign In Now."}
+            : "Already registered ? Sign In Now."}
         </p>
       </form>
     </div>
