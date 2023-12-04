@@ -7,13 +7,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/UserSlice";
+import { NETFLIX_BG_IMG, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const toggleSignInForm = () => {
@@ -49,20 +48,20 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/58057844?v=4",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               // Profile updated!
-              const { uid, email, displayName ,photoURL} = auth.currentUser;
+              const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(
                 addUser({
                   uid: uid,
                   email: email,
                   displayName: displayName,
-                  photoURL:photoURL,
+                  photoURL: photoURL,
                 })
               );
-              navigate("/browse");
+
               // ...
             })
             .catch((error) => {
@@ -71,7 +70,7 @@ const Login = () => {
               // ...
             });
           console.log(user);
-          navigate("/browse");
+
           // ...
         })
         .catch((error) => {
@@ -90,8 +89,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -106,10 +103,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/77d35039-751f-4c3e-9c8d-1240c1ca6188/cf244808-d722-428f-80a9-052acdf158ec/IN-en-20231106-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="logo"
-        ></img>
+        <img src={NETFLIX_BG_IMG} alt="logo"></img>
       </div>
       <form
         onSubmit={(e) => {
