@@ -3,11 +3,13 @@ import Header from "./Header";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
+import usePopularMovies from "../hooks/usePopularMovies";
 
 const Browse = () => {
 
   //Fetch data from TMDB movie and update store with all those results.
    useNowPlayingMovies();
+   usePopularMovies();
 
 
   return (
