@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/UserSlice";
 import { NETFLIX_LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
-import { toggleGptSearchView } from "../utils/gptSlice";
+import { removeGptMovieResult, toggleGptSearchView } from "../utils/gptSlice";
 import { addSupportedLanguages } from "../utils/configSlice";
 const Header = () => {
   const dispatch = useDispatch();
@@ -28,6 +28,7 @@ const Header = () => {
   const handleGPTSearchClick = () => {
     //toggle GPT search
     dispatch(toggleGptSearchView());
+    dispatch(removeGptMovieResult());
   };
   const handleLanguageChange = (e) => {
     dispatch(addSupportedLanguages(e.target.value));
